@@ -1,5 +1,5 @@
 import Foundation
-import WeScan
+import WeScanKbs
 
 var com = CDVInvokedUrlCommand()
 var uri = "";
