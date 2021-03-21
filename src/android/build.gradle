@@ -7,5 +7,5 @@ allprojects {
 }
 
 dependencies {
-	implementation 'com.github.SchmidtKBS:scanlibrary:bef5958'
+	implementation 'com.github.SchmidtKBS:scanlibrary:9ff0ed2'
 }
