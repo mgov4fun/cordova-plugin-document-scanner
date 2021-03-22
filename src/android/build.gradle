@@ -1,11 +1,11 @@
 allprojects {
 	repositories {
 		maven {
-			url 'https://jitpack.io'
+			url 'https://www.jitpack.io'
 		}
 	}
 }
 
 dependencies {
-	implementation 'com.github.SchmidtKBS:scanlibrary:c76199b'
+	implementation 'com.github.SchmidtKBS:scanlibrary:9ff0ed2'
 }
