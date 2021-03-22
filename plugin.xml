@@ -46,7 +46,14 @@
       <string>$PHOTOLIBRARY_USAGE_DESCRIPTION</string>
     </config-file>
 
-    <pod name="WeScanKbs" />
+    <podspec>
+         <config>
+             <source url="https://github.com/CocoaPods/Specs.git"/>
+         </config>
+         <pods use-frameworks="true">
+           <pod name="WeScanKbs" />
+         </pods>
+    </podspec>
     
   </platform>
 
