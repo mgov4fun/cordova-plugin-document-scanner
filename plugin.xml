@@ -51,7 +51,7 @@
              <source url="https://github.com/CocoaPods/Specs.git"/>
          </config>
          <pods use-frameworks="true">
-           <pod name="WeScanKbs" git="https://github.com/kbs-fabfel/WeScan" commit="9d9b1da"/>
+           <pod name="WeScanKbs" git="https://github.com/kbs-fabfel/WeScan" commit="3bc7c78"/>
          </pods>
     </podspec>
     
