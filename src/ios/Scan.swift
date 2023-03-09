@@ -1,39 +1,36 @@
 import Foundation
-import WeScanKbs
+import CovveWeScan
+import os.log
 
 var com = CDVInvokedUrlCommand()
 var uri = "";
 
 @objc(Scan) class Scan : CDVPlugin, ImageScannerControllerDelegate {
-    
+    func imageScannerControllerGoToPhotos(_ scanner: CovveWeScan.ImageScannerController) {
+    }
     
     @objc(scanDoc:)
     func scanDoc(_ command: CDVInvokedUrlCommand){
         com = command
 
-        var scannerViewController = ImageScannerController()
+        let scannerViewController = ImageScannerController(delegate: self)
 
-        let imageFromCamera = command.arguments[0] as! Bool
-        if (imageFromCamera == false) {
-            scannerViewController = ImageScannerController(image: true)
-        }
-
-        scannerViewController.imageScannerDelegate = self
         scannerViewController.modalPresentationStyle = .fullScreen
         
-        // Get the top most view and start the camera
-        if var topController = UIApplication.shared.keyWindow?.rootViewController {
-            while let presentedViewController = topController.presentedViewController {
-                topController = presentedViewController
-            }
-            topController.present(scannerViewController, animated: true)
+        if #available(iOS 13.0, *) {
+            scannerViewController.navigationBar.tintColor = .label
+        } else {
+            scannerViewController.navigationBar.tintColor = .black
         }
+        
+        self.viewController?.present(scannerViewController, animated: true)
+
     }
     
     
     func imageScannerController(_ scanner: ImageScannerController, didFailWithError error: Error) {
-        print(error)
-        let pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR, messageAs: (error as? String));
+        os_log("Error: %@", log: .default, type: .error, String(describing: error))
+        let pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR, messageAs: String(describing: error));
         commandDelegate.send(pluginResult, callbackId:com.callbackId);
         scanner.dismiss(animated: true)
     }
@@ -51,7 +48,7 @@ var uri = "";
     }
     
     func saveImage(image: UIImage) -> Bool {
-        guard let data = image.jpegData(compressionQuality:0.7) ?? image.pngData() else {
+        guard let data = UIImageJPEGRepresentation(image, 0.7) ?? UIImagePNGRepresentation(image) else {
             return false
         }
         guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) as NSURL else {

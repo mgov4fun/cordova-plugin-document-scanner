@@ -16,9 +16,12 @@
       <feature name="Scan">
         <param name="android-package" value="com.neutrinos.plugin.Scan"/>
       </feature>
+      <activity android:name="com.neutrinos.plugin.ScanActivityDocScannerFast" android:screenOrientation="portrait" android:theme="@style/Theme.AppCompat.NoActionBar" />
     </config-file>
 
     <source-file src="src/android/Scan.java" target-dir="src/com/neutrinos/plugin/" />
+    <source-file src="src/android/ScanActivityDocScannerFast.java" target-dir="src/com/neutrinos/plugin/" />
+    <source-file src="src/android/ScanConstants.java" target-dir="src/com/neutrinos/plugin/" />
     <source-file src="src/android/FileHelper.java" target-dir="src/com/neutrinos/plugin/" />
     <framework src="src/android/build.gradle" custom="true" type="gradleReference"/>
   </platform>
@@ -32,26 +35,14 @@
     </config-file>
 
     <source-file src="src/ios/Scan.swift" />
-
     <dependency id="cordova-plugin-add-swift-support" version="^2.0.2"/>
-    <dependency id="cordova-plugin-cocoapod-support"/>
-
-    <preference name="CAMERA_USAGE_DESCRIPTION" default="This app needs camera access"/>
-    <config-file target="*-Info.plist" parent="NSCameraUsageDescription">
-      <string>$CAMERA_USAGE_DESCRIPTION</string>
-    </config-file>
-
-    <preference name="PHOTOLIBRARY_USAGE_DESCRIPTION" default="This app needs read/write-access photo library access"/>
-    <config-file target="*-Info.plist" parent="NSPhotoLibraryUsageDescription">
-      <string>$PHOTOLIBRARY_USAGE_DESCRIPTION</string>
-    </config-file>
 
     <podspec>
          <config>
              <source url="https://github.com/CocoaPods/Specs.git"/>
          </config>
          <pods use-frameworks="true">
-           <pod name="WeScanKbs" git="https://github.com/SchmidtKBS/WeScan" branch="kbs-custom" commit="669d1de"/>
+           <pod name="CovveWeScan" git="https://github.com/mgov4fun/WeScan" tag="v2.0.0"/>
          </pods>
     </podspec>
     

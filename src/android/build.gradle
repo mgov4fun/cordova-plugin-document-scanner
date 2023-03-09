@@ -7,5 +7,5 @@ allprojects {
 }
 
 dependencies {
-	implementation 'com.github.SchmidtKBS:scanlibrary:252cf6c'
+	implementation 'com.github.Krobys:document-scanner-fast:1.0.0'
 }
